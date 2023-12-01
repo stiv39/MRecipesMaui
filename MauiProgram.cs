@@ -27,6 +27,8 @@ public static class MauiProgram
         dbContext.Dispose();
 
         builder.Services.AddScoped<MainPageViewModel>();
+        builder.Services.AddScoped<CategoryContentViewModel>();
+        builder.Services.AddScoped<RecipeContentViewModel>();
 
 #if DEBUG
 		builder.Logging.AddDebug();

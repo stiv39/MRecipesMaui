@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MRecipes.Views.RecipeContentView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:MRecipes.ViewModels"
+    Title="{Binding SelectedRecipe.Name}"
+    x:DataType="viewModels:RecipeContentViewModel">
+    <VerticalStackLayout>
+        <Label
+            HorizontalOptions="Center"
+            Text="{Binding SelectedRecipe.Description}"
+            VerticalOptions="Center" />
+    </VerticalStackLayout>
+</ContentPage>

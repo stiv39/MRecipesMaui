@@ -1,22 +1,23 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="MRecipes.MainPage"
+    x:Class="MRecipes.Views.CategoryContentView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:models="clr-namespace:MRecipes.Models"
     xmlns:viewModels="clr-namespace:MRecipes.ViewModels"
-    x:DataType="viewModels:MainPageViewModel">
-    <Grid Padding="30" RowDefinitions="*">
-        <ListView ItemsSource="{Binding Categories}">
+    Title="{Binding SelectedCategory.Name}"
+    x:DataType="viewModels:CategoryContentViewModel">
+    <VerticalStackLayout Padding="20">
+        <ListView ItemsSource="{Binding Recipes}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="models:Recipe">
                     <ViewCell>
                         <HorizontalStackLayout Margin="20" Spacing="10">
                             <HorizontalStackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MainPageViewModel}}, Path=SelectCategoryCommand}" CommandParameter="{Binding Id}" />
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CategoryContentViewModel}}, Path=SelectRecipeCommand}" CommandParameter="{Binding Id}" />
                             </HorizontalStackLayout.GestureRecognizers>
                             <ImageButton
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MainPageViewModel}}, Path=SelectCategoryCommand}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CategoryContentViewModel}}, Path=SelectRecipeCommand}"
                                 CommandParameter="{Binding Id}"
                                 HeightRequest="100"
                                 HorizontalOptions="Start"
@@ -32,5 +33,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </Grid>
+    </VerticalStackLayout>
 </ContentPage>

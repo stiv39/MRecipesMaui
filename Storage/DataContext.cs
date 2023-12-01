@@ -7,6 +7,7 @@ namespace MRecipes.Storage;
 public class DataContext : DbContext
 {
     public DbSet<Recipe> Recipes { get; set; }
+    public DbSet<Category> Categories { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -19,43 +20,10 @@ public class DataContext : DbContext
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(DataContext).Assembly);
 
-        modelBuilder.Entity<Recipe>().HasData(GetRecipes());
+        modelBuilder.Entity<Recipe>().HasData(Seed.Seed.GetRecipes());
+        modelBuilder.Entity<Category>().HasData(Seed.Seed.GetCategories());
+        modelBuilder.Entity<CategoryItem>().HasData(Seed.Seed.GetCategoryItems());
 
         base.OnModelCreating(modelBuilder);
     }
-
-    private static List<Recipe> GetRecipes() =>
-           new()
-           {
-                new Recipe
-                {
-                    Id = Guid.NewGuid(),
-                    Description = "Lorem impsum",
-                    Name = "Recipe 1"
-                },
-                new Recipe
-                {
-                    Id = Guid.NewGuid(),
-                    Description = "Lorem impsum",
-                    Name = "Recipe 2"
-                },
-                new Recipe
-                {
-                    Id = Guid.NewGuid(),
-                    Description = "Lorem impsum",
-                    Name = "Recipe 3"
-                },
-                new Recipe
-                {
-                    Id = Guid.NewGuid(),
-                    Description = "Lorem impsum",
-                    Name = "Recipe 4"
-                },
-                new Recipe
-                {
-                    Id = Guid.NewGuid(),
-                    Description = "Lorem impsum",
-                    Name = "Recipe 5"
-                }
-           };
 }

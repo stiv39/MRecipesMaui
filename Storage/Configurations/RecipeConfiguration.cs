@@ -10,6 +10,6 @@ public class RecipeConfiguration : IEntityTypeConfiguration<Recipe>
     {
         builder.ToTable(nameof(Recipe));
 
-        builder.HasKey(r => r.Id);
+        builder.HasKey(r => r.Id);       
     }
 }

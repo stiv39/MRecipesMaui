@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MRecipes.Models;
 using MRecipes.Storage;
 
@@ -11,9 +12,20 @@ public partial class MainPageViewModel : ObservableObject
     public MainPageViewModel(DataContext dataContext)
     {
         _dataContext = dataContext;
-        Recipes = _dataContext.Recipes.ToList();
+        // TO DO: Categories from DB
+        Categories = _dataContext.Categories.ToList();
     }
 
     [ObservableProperty]
-    private List<Recipe> _recipes = new List<Recipe>();
+    private List<Category> _categories = new List<Category>();
+
+    [RelayCommand]
+    private void SelectCategory(Guid id)
+    {
+        var navigationParameter = new ShellNavigationQueryParameters
+        {
+            { "id", id }
+        };
+        Shell.Current.GoToAsync("category", navigationParameter);
+    }
 }
