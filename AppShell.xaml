@@ -13,9 +13,4 @@
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="mainpage" />
 
-    <ShellContent
-        Title="Category"
-        ContentTemplate="{DataTemplate views:CategoryContentView}"
-        Route="category" />
-
 </Shell>

@@ -14,10 +14,14 @@ public partial class CategoryContentViewModel : ObservableObject, IQueryAttribut
 
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        Id = Guid.Parse(query["id"].ToString());
-        OnPropertyChanged(nameof(Id));
+        if(query.Any())
+        {
+            Id = Guid.Parse(query["id"].ToString());
+            OnPropertyChanged(nameof(Id));
 
-        Load(Id);
+
+            Load(Id);
+        }
     }
 
     public CategoryContentViewModel(DataContext dataContext)

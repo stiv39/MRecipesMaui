@@ -7,9 +7,9 @@ namespace MRecipes
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute("mainpage", typeof(MainPage));
-            Routing.RegisterRoute("category", typeof(CategoryContentView));
-            Routing.RegisterRoute("category/recipe", typeof(RecipeContentView));
+            Routing.RegisterRoute("//mainpage", typeof(MainPage));
+            Routing.RegisterRoute("//mainpage/category", typeof(CategoryContentView));
+            Routing.RegisterRoute("//mainpage/category/recipe", typeof(RecipeContentView));
         }
     }
 }

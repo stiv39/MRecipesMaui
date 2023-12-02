@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MRecipes.Models;
 using MRecipes.Storage;
 
@@ -9,10 +10,13 @@ public partial class RecipeContentViewModel : ObservableObject, IQueryAttributab
     private Guid Id { get; set; }
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        Id = Guid.Parse(query["id"].ToString());
-        OnPropertyChanged(nameof(Id));
+        if(query.Any())
+        {
+            Id = Guid.Parse(query["id"].ToString());
+            OnPropertyChanged(nameof(Id));
 
-        Load(Id);
+            Load(Id);
+        }
     }
 
     private readonly DataContext _dataContext;
@@ -24,6 +28,9 @@ public partial class RecipeContentViewModel : ObservableObject, IQueryAttributab
 
     [ObservableProperty]
     private Recipe _selectedRecipe;
+
+    [RelayCommand]
+    private Task GoBack() => Shell.Current.GoToAsync("category");
 
     private void Load(Guid id)
     {
