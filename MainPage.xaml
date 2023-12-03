@@ -26,7 +26,7 @@
                                 Grid.Column="0"
                                 HeightRequest="100"
                                 HorizontalOptions="Start"
-                                Source="pizza.jpg"
+                                Source="{Binding Image}"
                                 WidthRequest="100" />
                             <Label
                                 Grid.Column="1"

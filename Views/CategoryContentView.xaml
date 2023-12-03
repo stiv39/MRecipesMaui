@@ -43,12 +43,12 @@
                                 CommandParameter="{Binding Id}"
                                 HeightRequest="100"
                                 HorizontalOptions="Start"
-                                Source="pizza.jpg"
+                                Source="{Binding Image}"
                                 WidthRequest="100" />
                             <Label
                                 FontAttributes="Bold"
                                 FontSize="Medium"
-                                Text="{Binding Name}"
+                                Text="{Binding ShortName}"
                                 VerticalOptions="Center" />
                         </HorizontalStackLayout>
                     </Border>

@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.EntityFrameworkCore;
 using MRecipes.Models;
 using MRecipes.Storage;
 
@@ -34,6 +35,6 @@ public partial class RecipeContentViewModel : ObservableObject, IQueryAttributab
 
     private void Load(Guid id)
     {
-        SelectedRecipe = _dataContext.Recipes.FirstOrDefault(r => r.Id == id);
+        SelectedRecipe = _dataContext.Recipes.Include(r => r.Ingredients).FirstOrDefault(r => r.Id == id);
     }
 }

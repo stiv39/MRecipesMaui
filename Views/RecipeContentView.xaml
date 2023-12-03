@@ -3,14 +3,48 @@
     x:Class="MRecipes.Views.RecipeContentView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:MRecipes.Models"
     xmlns:viewModels="clr-namespace:MRecipes.ViewModels"
-    Title="{Binding SelectedRecipe.Name}"
+    Title="{Binding SelectedRecipe.ShortName}"
     x:DataType="viewModels:RecipeContentViewModel">
     <VerticalStackLayout Background="DarkSlateBlue">
-        <Image Aspect="AspectFit" Source="pizza.jpg" />
+
+        <Image Aspect="AspectFit" Source="{Binding SelectedRecipe.Image}" />
+
+        <Label
+            Margin="0,20,0,0"
+            HorizontalOptions="Center"
+            Text="{Binding SelectedRecipe.LongName}" />
+
+        <BoxView
+            Margin="50,20,50,20"
+            HeightRequest="0.5"
+            Color="Black" />
+
         <Label
             HorizontalOptions="Center"
             Text="{Binding SelectedRecipe.Description}"
             VerticalOptions="Center" />
+
+        <BoxView
+            Margin="50,20,50,20"
+            HeightRequest="0.5"
+            Color="Black" />
+
+        <CollectionView ItemsSource="{Binding SelectedRecipe.Ingredients}" SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Ingredient">
+                    <Label HorizontalOptions="Center" Text="{Binding Name}" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <BoxView
+            Margin="50,20,50,20"
+            HeightRequest="0.5"
+            Color="Black" />
+
+        <Label HorizontalOptions="Center" Text="{Binding SelectedRecipe.Guide}" />
+
     </VerticalStackLayout>
 </ContentPage>

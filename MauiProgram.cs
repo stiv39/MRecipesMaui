@@ -23,7 +23,10 @@ public static class MauiProgram
         builder.Services.AddDbContext<DataContext>();
 
         var dbContext = new DataContext();
+        dbContext.Database.EnsureDeleted();
         dbContext.Database.EnsureCreated();
+        
+        
         dbContext.Dispose();
 
         builder.Services.AddScoped<MainPageViewModel>();

@@ -5,7 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MRecipes"
     xmlns:views="clr-namespace:MRecipes.Views"
-    Title="MRecipes"
     Shell.BackgroundColor="CadetBlue"
     Shell.FlyoutBehavior="Disabled">
 

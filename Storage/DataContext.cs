@@ -23,6 +23,7 @@ public class DataContext : DbContext
         modelBuilder.Entity<Recipe>().HasData(Seed.Seed.GetRecipes());
         modelBuilder.Entity<Category>().HasData(Seed.Seed.GetCategories());
         modelBuilder.Entity<CategoryItem>().HasData(Seed.Seed.GetCategoryItems());
+        modelBuilder.Entity<Ingredient>().HasData(Seed.Seed.GetIngredients());
 
         base.OnModelCreating(modelBuilder);
     }

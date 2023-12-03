@@ -63,7 +63,7 @@ public partial class CategoryContentViewModel : ObservableObject, IQueryAttribut
 
             Recipes = SelectedCategory?.Items
              .Select(i => i.Recipe)
-            .OrderBy(r => r.Name)
+            .OrderBy(r => r.ShortName)
             .ToList();
         }
     }
