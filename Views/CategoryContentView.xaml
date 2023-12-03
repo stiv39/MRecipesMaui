@@ -7,12 +7,34 @@
     xmlns:viewModels="clr-namespace:MRecipes.ViewModels"
     Title="{Binding SelectedCategory.Name}"
     x:DataType="viewModels:CategoryContentViewModel">
-    <VerticalStackLayout Padding="20">
-        <ListView ItemsSource="{Binding Recipes}">
-            <ListView.ItemTemplate>
+    <Grid
+        Padding="20"
+        Background="DarkSlateBlue"
+        RowDefinitions="*, Auto">
+        <Label FontAttributes="Bold" Text="There are no recipes in this category yet">
+            <Label.Triggers>
+                <DataTrigger
+                    Binding="{Binding DisplayNoItemsMessage}"
+                    TargetType="Label"
+                    Value="True">
+                    <Setter Property="IsVisible" Value="True" />
+                </DataTrigger>
+                <DataTrigger
+                    Binding="{Binding DisplayNoItemsMessage}"
+                    TargetType="Label"
+                    Value="False">
+                    <Setter Property="IsVisible" Value="False" />
+                </DataTrigger>
+            </Label.Triggers>
+        </Label>
+        <CollectionView Grid.Row="0" ItemsSource="{Binding Recipes}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Recipe">
-                    <ViewCell>
-                        <HorizontalStackLayout Margin="20" Spacing="10">
+                    <Border>
+                        <HorizontalStackLayout Spacing="10">
                             <HorizontalStackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CategoryContentViewModel}}, Path=SelectRecipeCommand}" CommandParameter="{Binding Id}" />
                             </HorizontalStackLayout.GestureRecognizers>
@@ -29,9 +51,14 @@
                                 Text="{Binding Name}"
                                 VerticalOptions="Center" />
                         </HorizontalStackLayout>
-                    </ViewCell>
+                    </Border>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </VerticalStackLayout>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Label
+            Grid.Row="1"
+            FontAttributes="Bold"
+            HorizontalOptions="Center"
+            Text="MRecipes" />
+    </Grid>
 </ContentPage>

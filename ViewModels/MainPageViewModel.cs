@@ -12,12 +12,12 @@ public partial class MainPageViewModel : ObservableObject
     public MainPageViewModel(DataContext dataContext)
     {
         _dataContext = dataContext;
-        // TO DO: Categories from DB
+
         Categories = _dataContext.Categories.ToList();
     }
 
     [ObservableProperty]
-    private List<Category> _categories = new List<Category>();
+    private List<Category> _categories = new();
 
     [RelayCommand]
     private void SelectCategory(Guid id)

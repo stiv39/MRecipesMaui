@@ -6,11 +6,11 @@
     xmlns:local="clr-namespace:MRecipes"
     xmlns:views="clr-namespace:MRecipes.Views"
     Title="MRecipes"
+    Shell.BackgroundColor="CadetBlue"
     Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
-        Title="Categories"
+        Title="MRecipes"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="mainpage" />
-
 </Shell>

@@ -6,31 +6,44 @@
     xmlns:models="clr-namespace:MRecipes.Models"
     xmlns:viewModels="clr-namespace:MRecipes.ViewModels"
     x:DataType="viewModels:MainPageViewModel">
-    <Grid Padding="30" RowDefinitions="*">
-        <ListView ItemsSource="{Binding Categories}">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="models:Recipe">
-                    <ViewCell>
-                        <HorizontalStackLayout Margin="20" Spacing="10">
+    <Grid
+        Padding="20"
+        Background="DarkSlateBlue"
+        RowDefinitions="*, Auto">
+        <CollectionView ItemsSource="{Binding Categories}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Category">
+                    <Border>
+                        <HorizontalStackLayout Spacing="20">
                             <HorizontalStackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MainPageViewModel}}, Path=SelectCategoryCommand}" CommandParameter="{Binding Id}" />
                             </HorizontalStackLayout.GestureRecognizers>
+
                             <ImageButton
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MainPageViewModel}}, Path=SelectCategoryCommand}"
-                                CommandParameter="{Binding Id}"
+                                Grid.Column="0"
                                 HeightRequest="100"
                                 HorizontalOptions="Start"
                                 Source="pizza.jpg"
                                 WidthRequest="100" />
                             <Label
+                                Grid.Column="1"
                                 FontAttributes="Bold"
                                 FontSize="Medium"
                                 Text="{Binding Name}"
+                                TextColor="Black"
                                 VerticalOptions="Center" />
                         </HorizontalStackLayout>
-                    </ViewCell>
+                    </Border>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Label
+            Grid.Row="1"
+            FontAttributes="Bold"
+            HorizontalOptions="Center"
+            Text="MRecipes" />
     </Grid>
 </ContentPage>

@@ -22,12 +22,17 @@ public partial class CategoryContentViewModel : ObservableObject, IQueryAttribut
 
             Load(Id);
         }
+
+        DisplayNoItemsMessage = !SelectedCategory.Items.Any();
     }
 
     public CategoryContentViewModel(DataContext dataContext)
     {
         _dataContext = dataContext;
     }
+
+    [ObservableProperty]
+    private bool _displayNoItemsMessage = false;
 
     [ObservableProperty]
     private Category _selectedCategory;

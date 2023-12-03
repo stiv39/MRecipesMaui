@@ -6,7 +6,8 @@
     xmlns:viewModels="clr-namespace:MRecipes.ViewModels"
     Title="{Binding SelectedRecipe.Name}"
     x:DataType="viewModels:RecipeContentViewModel">
-    <VerticalStackLayout>
+    <VerticalStackLayout Background="DarkSlateBlue">
+        <Image Aspect="AspectFit" Source="pizza.jpg" />
         <Label
             HorizontalOptions="Center"
             Text="{Binding SelectedRecipe.Description}"
